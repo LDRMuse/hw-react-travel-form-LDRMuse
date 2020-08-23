@@ -1,26 +1,26 @@
-import React, { Component } from "react"
+import React, { useState, setState } from "react"
 
 import { Checkbox, Input, Radio } from "./Inputs"
 import { Select } from "./Select"
 
-export class Form extends Component {
-  state = {
-    firstName: "",
-    lastName: "",
-    age: "",
-    gender: "",
-    destination: "India",
-    isVegan: false,
-    isLactose: false,
-    location: "",
-  }
+export const Form = () => {
+const [firstName, setFirstName] = useState('')
+const [lastName, setLastName] = useState('')
+const [age, setAge] = useState('')
+const [gender, setGender] = useState('')
+const [destination] = useState('India')
+const [isVegan, setIsVegan] = useState(false)
+const [isLactose, setIsLactose] = useState(false)
+const [location, setLocation] = useState('')
 
-  destinations = {
+
+
+  const destinations = {
     name: "destination",
     options: ["India", "Murica", "Australia", "Germany"],
   }
 
-  dietaryRestrictions = [
+  const dietaryRestrictions = [
     {
       name: "isVegan",
       type: "checkbox",
@@ -33,7 +33,7 @@ export class Form extends Component {
     },
   ]
 
-  genderInputs = [
+  const genderInputs = [
     {
       name: "gender",
       type: "radio",
@@ -46,7 +46,7 @@ export class Form extends Component {
     },
   ]
 
-  textInputs = [
+  const textInputs = [
     {
       name: "fname",
       placeholder: "First Name",
@@ -61,51 +61,51 @@ export class Form extends Component {
     },
   ]
 
-  handleChange = ({ target }) => {
+  const handleChange = ({ target }) => {
     const { name, value, type, checked } = target
 
     type === "checkbox"
-      ? this.setState({
+      ? setState({
           [name]: checked,
         })
-      : this.setState({
+      : setState({
           [name]: value,
         })
   }
 
-  render() {
+
     return (
       <form>
-        {this.textInputs.map(({ name, placeholder }, i) => (
+        {textInputs.map(({ name, placeholder }, i) => (
           <Input
             name={name}
             placeholder={placeholder}
-            inputHandler={this.handleChange}
+            inputHandler={handleChange}
             key={i}
           />
         ))}
 
-        {this.genderInputs.map(({ name, value }, i) => (
+        {genderInputs.map(({ name, value }, i) => (
           <Radio
-            checked={this.state.gender === value}
+            checked={gender === value}
             name={name}
             value={value}
-            handler={this.handleChange}
+            handler={handleChange}
             key={i}
           />
         ))}
 
         <Select
-          selections={this.destinations}
-          selectionsHandler={this.handleChange}
+          selections={destinations}
+          selectionsHandler={handleChange}
         />
 
-        {this.dietaryRestrictions.map(({ name, value = name }, i) => (
+        {dietaryRestrictions.map(({ name, value = name }, i) => (
           <Checkbox
             name={name}
             value={value}
-            handler={this.handleChange}
-            checked={this.state[name]}
+            handler={handleChange}
+            checked={name}
             key={i}
           />
         ))}
@@ -114,4 +114,4 @@ export class Form extends Component {
       </form>
     )
   }
-}
+
