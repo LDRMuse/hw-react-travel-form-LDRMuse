@@ -1,29 +1,32 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-export class CheckboxInput extends React.Component {
-  static propTypes = {
-    handler: PropTypes.func,
-    checked: PropTypes.bool,
-    name: PropTypes.string.isRequired,
+export const CheckboxInput = ({handler, checked, name}) =>{
+
+
+
+  const handleChange = (event) => {
+    handler(event)
   }
 
-  static defaultProps = {
-    checked: false,
-  }
 
-  handleChange = (event) => {
-    this.props.handler(event)
-  }
-
-  render() {
     return (
       <input
         type="checkbox"
-        name={this.props.name}
-        checked={this.props.checked}
-        onChange={this.handleChange}
+        name={name}
+        checked={checked}
+        onChange={handleChange}
       />
     )
   }
+
+
+CheckboxInput.propTypes = {
+  handler: PropTypes.func,
+  checked: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+}
+
+CheckboxInput.defaultProps = {
+  checked: false,
 }
