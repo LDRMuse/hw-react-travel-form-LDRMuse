@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, {Fragment} from "react";
 
-export const Input = ({ name, placeholder, inputHandler}) => {
+import './form.css'
+
+export const Input = ({ name, placeholder, inputHandler }) => {
 
 
 
@@ -10,8 +12,18 @@ export const Input = ({ name, placeholder, inputHandler}) => {
   }
 
 
-    return <input type="text" name={name} placeholder={placeholder} onChange={handleChange}/>;
+  return (
+    <Fragment>
+    <label className="label"></label>
+      <div className='field has-text-centered'>
+        <div className="control">
+        <input className='input is-primary' id='search' type="text" name={name} placeholder={placeholder} onChange={handleChange} />
+        </div>
+      </div>
+      </Fragment>
+  );
 }
+
 
 
 Input.propTypes = {
@@ -21,5 +33,5 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
-    placeholder: ""
+  placeholder: ""
 }

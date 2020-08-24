@@ -11,14 +11,23 @@ export const CheckboxInput = ({handler, checked, name}) =>{
 
 
     return (
+      <div className='field   has-text-centered is-success'>
+      <div className="control">
       <input
+      className='checkbox'
         type="checkbox"
         name={name}
         checked={checked}
         onChange={handleChange}
       />
+      </div>
+    </div>
+
     )
   }
+
+
+
 
 
 CheckboxInput.propTypes = {

@@ -93,7 +93,7 @@ const [location, setLocation] = useState('')
 
 
     return (
-      <form>
+      <form className='field has-text-centered'>
         {textInputs.map(({ name, placeholder }, i) => (
           <Input
             name={name}
@@ -128,7 +128,7 @@ const [location, setLocation] = useState('')
           />
         ))}
 
-        <button>Submit</button>
+        <button className='button is-primary'>Submit</button>
       </form>
     )
   }
