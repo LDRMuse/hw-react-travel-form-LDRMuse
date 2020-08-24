@@ -8,7 +8,7 @@ const [firstName, setFirstName] = useState('')
 const [lastName, setLastName] = useState('')
 const [age, setAge] = useState('')
 const [gender, setGender] = useState('')
-const [destination] = useState('India')
+const [destination, setDestination] = useState('India')
 const [isVegan, setIsVegan] = useState(false)
 const [isLactose, setIsLactose] = useState(false)
 const [location, setLocation] = useState('')
@@ -16,18 +16,18 @@ const [location, setLocation] = useState('')
 
 
   const destinations = {
-    name: "destination",
+    id: "destination",
     options: ["India", "Murica", "Australia", "Germany"],
   }
 
   const dietaryRestrictions = [
     {
-      name: "isVegan",
+      id: "isVegan",
       type: "checkbox",
       value: "isVegan",
     },
     {
-      name: "isLactoseFree",
+      id: "isLactoseFree",
       type: "checkbox",
       value: "isLactoseFree",
     },
@@ -35,12 +35,12 @@ const [location, setLocation] = useState('')
 
   const genderInputs = [
     {
-      name: "gender",
+      id: "gender",
       type: "radio",
       value: "M",
     },
     {
-      name: "gender",
+      id: "gender",
       type: "radio",
       value: "F",
     },
@@ -48,29 +48,47 @@ const [location, setLocation] = useState('')
 
   const textInputs = [
     {
-      name: "fname",
+      id: "fname",
       placeholder: "First Name",
     },
     {
-      name: "lname",
+      id: "lname",
       placeholder: "Last Name",
     },
     {
-      name: "age",
+      id: "age",
       placeholder: "Age",
     },
   ]
 
   const handleChange = ({ target }) => {
-    const { name, value, type, checked } = target
+    const { id, value, type, checked } = target
 
-    type === "checkbox"
-      ? setState({
-          [name]: checked,
-        })
-      : setState({
-          [name]: value,
-        })
+    if (type === 'checkbox') {
+      id === 'isVegan'
+        ? setIsVegan(checked)
+        : setIsLactose(checked)
+    }
+    if (id === 'fname') {
+      setFirstName(value)
+    }
+    if (id === 'lname') {
+      setLastName(value)
+    }
+    if (id === 'age') {
+      setAge(value)
+    }
+    if (id === 'gender') {
+      setGender(value)
+    }
+    if (id === 'destination') {
+      setDestination(value)
+    }
+    if (id === 'location') {
+      setLocation(value)
+    }
+
+
   }
 
 
