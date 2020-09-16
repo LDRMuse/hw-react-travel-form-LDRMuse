@@ -1,17 +1,16 @@
-import React, { useState, setState } from "react"
+import React, { useState } from "react"
 
 import { Checkbox, Input, Radio } from "./Inputs"
 import { Select } from "./Select"
 
 export const Form = () => {
-const [firstName, setFirstName] = useState('')
-const [lastName, setLastName] = useState('')
-const [age, setAge] = useState('')
-const [gender, setGender] = useState('')
-const [destination, setDestination] = useState('India')
-const [isVegan, setIsVegan] = useState(false)
-const [isLactose, setIsLactose] = useState(false)
-const [location, setLocation] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [gender, setGender] = useState('')
+  const [destination, setDestination] = useState('India')
+  const [isVegan, setIsVegan] = useState(false)
+  const [isLactose, setIsLactose] = useState(false)
 
 
 
@@ -35,12 +34,12 @@ const [location, setLocation] = useState('')
 
   const genderInputs = [
     {
-      id: "gender",
+      name: "gender",
       type: "radio",
       value: "M",
     },
     {
-      id: "gender",
+      name: "gender",
       type: "radio",
       value: "F",
     },
@@ -56,47 +55,43 @@ const [location, setLocation] = useState('')
       placeholder: "Last Name",
     },
     {
-      id: "age",
-      placeholder: "Age",
+      id: "email",
+      placeholder: "Email",
     },
   ]
 
   const handleChange = ({ target }) => {
-    const { id, value, type, checked } = target
+    const { id, value, checked } = target
 
-    if (type === 'checkbox') {
-      id === 'isVegan'
-        ? setIsVegan(checked)
-        : setIsLactose(checked)
-    }
-    if (id === 'fname') {
-      setFirstName(value)
-    }
-    if (id === 'lname') {
-      setLastName(value)
-    }
-    if (id === 'age') {
-      setAge(value)
-    }
-    if (id === 'gender') {
-      setGender(value)
-    }
-    if (id === 'destination') {
-      setDestination(value)
-    }
-    if (id === 'location') {
-      setLocation(value)
-    }
-
-
-  }
+    switch (id) {
+      case "fname":
+        setFirstName(value)
+        break
+      case "lname":
+        setLastName(value)
+        break
+      case "Email":
+        setEmail(value)
+        break
+      case "isVegan":
+        setIsVegan(value)
+        break
+        case "isLactose":
+          setIsLactose(value)
+          break
+      case "destination":
+        setDestination(value)
+        break
+        default:
+          setGender(value)
+    }}
 
 
     return (
       <form className='field has-text-centered'>
-        {textInputs.map(({ name, placeholder }, i) => (
+        {textInputs.map(({ id, placeholder }, i) => (
           <Input
-            name={name}
+            id={id}
             placeholder={placeholder}
             inputHandler={handleChange}
             key={i}
@@ -118,12 +113,12 @@ const [location, setLocation] = useState('')
           selectionsHandler={handleChange}
         />
 
-        {dietaryRestrictions.map(({ name, value = name }, i) => (
+        {dietaryRestrictions.map(({ id, value, checked}, i) => (
           <Checkbox
-            name={name}
+            id={id}
             value={value}
             handler={handleChange}
-            checked={name}
+            checked={checked}
             key={i}
           />
         ))}

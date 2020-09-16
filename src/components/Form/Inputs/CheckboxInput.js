@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-export const CheckboxInput = ({handler, checked, name}) =>{
+export const CheckboxInput = ({handler, checked, id, label}) =>{
 
 
 
@@ -16,10 +16,11 @@ export const CheckboxInput = ({handler, checked, name}) =>{
       <input
       className='checkbox'
         type="checkbox"
-        name={name}
+        id={id}
         checked={checked}
         onChange={handleChange}
       />
+      {label}
       </div>
     </div>
 
@@ -33,7 +34,8 @@ export const CheckboxInput = ({handler, checked, name}) =>{
 CheckboxInput.propTypes = {
   handler: PropTypes.func,
   checked: PropTypes.bool,
-  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string,
 }
 
 CheckboxInput.defaultProps = {

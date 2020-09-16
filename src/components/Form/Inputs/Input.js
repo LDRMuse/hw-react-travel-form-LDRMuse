@@ -3,7 +3,7 @@ import React, {Fragment} from "react";
 
 import './form.css'
 
-export const Input = ({ name, placeholder, inputHandler }) => {
+export const Input = ({ id, placeholder, type, inputHandler }) => {
 
 
 
@@ -17,7 +17,7 @@ export const Input = ({ name, placeholder, inputHandler }) => {
     <label className="label"></label>
       <div className='field has-text-centered'>
         <div className="control">
-        <input className='input is-primary' id='search' type="text" name={name} placeholder={placeholder} onChange={handleChange} />
+        <input className='input is-primary' type={type} id={id} placeholder={placeholder} onChange={handleChange} />
         </div>
       </div>
       </Fragment>
@@ -28,8 +28,9 @@ export const Input = ({ name, placeholder, inputHandler }) => {
 
 Input.propTypes = {
   inputHandler: PropTypes.func,
-  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
+  type: PropTypes.string,
 }
 
 Input.defaultProps = {
